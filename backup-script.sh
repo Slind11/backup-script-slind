@@ -38,18 +38,12 @@ fi
 
 echo "Архиватор tar установлен."
 
-#Создание функции, которая создает имя файла для резервного копирования, с учетом переданной директории
+#Создание функции, которая преднозначена для создания имени файла бэкапа 
 
 generate_backup_filename() {
     local Backup_directory="$1"
+    local Backup_type=$"$2"
     local Current_data=$(date +"%Y%m%d_%H%M%S")
-    echo "Backup_${Current_data}_$(basename "$Backup_directory").tar.gz"
+    echo "${Backup_type}_Backup_${Current_date}_$(basename "$Backup_directory").tar.gz"
 }
-
-Backup_filename=$(generate_backup_filename "$Backup_directory")
-
-tar -czf "$Backup_save/$Backup_filename" -C "$Backup_directory" .
-
-echo "Бэкап успешно завешен в: $Backup_save с именем $Backup_filename"
-
 
